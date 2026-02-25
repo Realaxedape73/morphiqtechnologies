@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morph IQ — Property Document Intelligence</title>
+<meta name="description" content="We turn your letting agency's paper chaos into a searchable, organised digital archive with verified key fields. Based in Harlow, Essex.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Google Sans local loading with Inter as web fallback */
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Google Sans Regular'), local('GoogleSans-Regular'), local('Product Sans Regular'), local('ProductSans-Regular');
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Google Sans Medium'), local('GoogleSans-Medium'), local('Product Sans Medium'), local('ProductSans-Medium');
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Google Sans Bold'), local('GoogleSans-Bold'), local('Product Sans Bold'), local('ProductSans-Bold');
+}
+</style>
+
+
+
+<style>
+:root {
+  --ink: #F2F6F5;
+  --paper: #061617;
+  --cream: #0A1D1F;
+  --accent: #7AAFA6;
+  --accent-light: rgba(122,175,166,0.14);
+  --accent-glow: #7AAFA6;
+  --warm: #7AAFA6;
+  --muted: rgba(242,246,245,0.62);
+  --white: #0A1D1F;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.35);
+  --shadow-md: 0 10px 40px rgba(0,0,0,0.45);
+  --shadow-lg: 0 24px 80px rgba(0,0,0,0.60);
+  --nav-scrolled-bg: rgba(6,22,23,0.86);
+  --border-light: rgba(255,255,255,0.08);
+  --border-mid: rgba(255,255,255,0.12);
+  --card-bg: rgba(255,255,255,0.05);
+  --card-border: rgba(255,255,255,0.10);
+  --card-hover: rgba(255,255,255,0.07);
+}
+
+
+
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* --- UTILITY --- */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.serif { font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif; }
+.accent { color: var(--accent); }
+.warm { color: var(--warm); }
+
+/* --- GRAIN OVERLAY --- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* --- NAV --- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 18px 0;
+  transition: all 0.4s ease;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+nav.nav-entered {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.7s ease;
+}
+nav.scrolled {
+  background: var(--nav-scrolled-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 20px var(--border-mid);
+}
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.nav-cta {
+  background: var(--accent);
+  color: var(--ink);
+  padding: 10px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+/* --- LOGO MARK THEME OVERRIDES --- */
+.nav-cta:hover {
+  background: #070A0E;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+}
+
+/* --- HERO --- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -300px;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(0,0,0,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content {
+  max-width: 750px;
+  position: relative;
+  z-index: 2;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+  
+}
+.hero-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.hero h1 {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+  
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero-sub {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 560px;
+  margin-bottom: 40px;
+  
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--ink);
+  padding: 16px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: #070A0E;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.20);
+}
+
+/* --- MONOCHROME BUTTON OVERRIDES --- */
+.btn-primary, .nav-cta, .form-submit {
+  color: #ffffff;
+}
+.btn-primary svg { transition: transform 0.3s ease; }
+.btn-primary:hover svg { transform: translateX(3px); }
+.btn-ghost {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.btn-ghost:hover { color: var(--ink); }
+.hero-proof {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(10,15,26,0.08);
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  
+}
+.proof-item {
+  display: flex;
+  flex-direction: column;
+}
+.proof-num {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 2rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.proof-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- PROBLEM SECTION --- */
+.problem {
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(122,175,166,0.10), transparent 60%),
+              radial-gradient(900px 500px at 80% 40%, rgba(122,175,166,0.08), transparent 55%),
+              var(--paper);
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.problem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.10) 0%, transparent 60%);
+  pointer-events: none;
+}
+.problem .container { position: relative; z-index: 2; }
+.problem-header {
+  max-width: 600px;
+  margin-bottom: 56px;
+}
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--accent-glow);
+  margin-bottom: 16px;
+}
+.problem h2 {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.pain-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: all 0.3s ease;
+}
+.pain-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+}
+.pain-icon {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  display: block;
+}
+.pain-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.pain-card p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* --- SOLUTION --- */
+.solution-header {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 64px;
+}
+.solution-header h2 {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.solution-header p {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+.value-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+.value-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 40px 32px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(10,15,26,0.04);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.value-card:hover::before { transform: scaleX(1); }
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.value-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--accent-light);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+.value-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.value-card p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* --- HOW IT WORKS --- */
+.how-it-works {
+  background: var(--cream);
+}
+.how-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 64px;
+}
+.how-header h2 {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.how-header p { color: var(--muted); font-size: 1.05rem; }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), rgba(255,255,255,0.12));
+  z-index: 0;
+}
+.step {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.step-num {
+  width: 72px;
+  height: 72px;
+  background: var(--white);
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin: 0 auto 24px;
+  box-shadow: var(--shadow-md);
+}
+.step h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.step p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 260px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+/* --- DOC TYPES --- */
+.doc-types-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.doc-types-header h2 {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.doc-types-header p { color: var(--muted); font-size: 1.05rem; }
+.doc-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.doc-card {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid rgba(10,15,26,0.06);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.doc-card:hover {
+  border-color: rgba(10,15,26,0.12);
+}
+.doc-card.open {
+  border-color: var(--accent);
+  box-shadow: 0 4px 24px rgba(26,92,58,0.08);
+}
+.doc-card-header {
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+.doc-card-header:hover {
+  background: var(--accent-light);
+}
+.doc-tag-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--accent-light);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.doc-card.open .doc-tag-icon {
+  background: var(--accent);
+}
+.doc-card.open .doc-tag-icon-inner {
+  filter: brightness(10);
+}
+.doc-card-title {
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.doc-card-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--accent);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.doc-card.open .doc-card-toggle {
+  background: var(--accent);
+  color: var(--ink);
+  transform: rotate(45deg);
+}
+.doc-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.doc-card.open .doc-card-body {
+  max-height: 400px;
+}
+.doc-card-inner {
+  padding: 0 24px 24px;
+}
+.doc-card-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.field-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.field-pill {
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.field-pill::before {
+  content: '✓';
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+.doc-card-note {
+  margin-top: 14px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+}
+.doc-card-note strong {
+  color: var(--warm);
+  font-weight: 600;
+}
+
+/* --- TRUST --- */
+.trust {
+  background: var(--white);
+  border-top: 1px solid rgba(10,15,26,0.06);
+  border-bottom: 1px solid rgba(10,15,26,0.06);
+}
+.trust-header {
+  text-align: center;
+  margin: 0 auto 56px;
+}
+.trust-header h2 {
+  white-space: nowrap;
+
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.trust-header p { color: var(--muted); font-size: 1.05rem; }
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.trust-item {
+  text-align: center;
+  padding: 24px 16px;
+}
+.trust-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--accent-light);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.5rem;
+}
+.trust-item h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.trust-item p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* --- CTA / FORM --- */
+.cta-section {
+  background: radial-gradient(1000px 600px at 30% 20%, rgba(122,175,166,0.10), transparent 60%),
+              var(--paper);
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  bottom: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.cta-text h2 {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.cta-text p {
+  color: var(--ink);
+  font-size: 1.05rem;
+  margin-bottom: 24px;
+  max-width: 420px;
+}
+.cta-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cta-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+.cta-bullets li::before {
+  content: '✓';
+  color: var(--accent-glow);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.form-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+}
+.form-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.form-card .form-sub {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background: rgba(255,255,255,0.05);
+  color: var(--ink);
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  outline: none;
+}
+.form-group input::placeholder { color: rgba(242,246,245,0.40); }
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 0 3px rgba(122,175,166,0.18);
+}
+.form-group select option { background: #061617; color: #F2F6F5; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--accent);
+  color: var(--ink);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+.form-submit:hover {
+  background: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+}
+.form-note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink);
+  margin-top: 14px;
+}
+
+/* --- FAQ --- */
+.faq-header {
+  text-align: center;
+  max-width: 550px;
+  margin: 0 auto 56px;
+}
+.faq-header h2 {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.faq-header p { color: var(--muted); font-size: 1.05rem; }
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid rgba(10,15,26,0.06);
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.faq-item:hover { border-color: rgba(10,15,26,0.12); }
+.faq-q {
+  padding: 22px 28px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--ink);
+}
+.faq-q::after {
+  content: '+';
+  font-size: 1.3rem;
+  color: var(--accent);
+  font-weight: 400;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+.faq-item.open .faq-q::after {
+  transform: rotate(45deg);
+}
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+.faq-item.open .faq-a {
+  max-height: 300px;
+}
+.faq-a-inner {
+  padding: 0 28px 22px;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* --- FINAL CTA --- */
+.final-cta {
+  text-align: center;
+  background: var(--cream);
+}
+.final-cta h2 {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.final-cta p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 32px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.final-cta-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* --- FOOTER --- */
+footer {
+  background: var(--paper);
+  color: var(--muted);
+  padding: 40px 0;
+  text-align: center;
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-light);
+}
+footer a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+}
+footer a:hover {
+  color: var(--accent);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-links { display: flex; gap: 24px; }
+
+/* Transitions for themed elements */
+.value-card, .doc-card, .faq-item, .trust, .pain-card, .form-card,
+.form-group input, .form-group select, .nav-cta, .btn-primary,
+.hero-badge, .step-num, .trust-icon, .value-icon, .doc-tag-icon,
+.doc-card-toggle, .field-pill {
+  transition: all 0.35s ease;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .value-cards { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; gap: 32px; }
+  .steps::before { display: none; }
+  .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-proof { gap: 32px; }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .section { padding: 72px 0; }
+  .hero { padding-top: 80px; min-height: auto; }
+  .form-row { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+
+/* --- RAEN-INSPIRED VISUAL LAYER (DESIGN ONLY) --- */
+#bg-canvas{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.95;
+}
+body{
+  background: radial-gradient(1200px 700px at 30% 15%, rgba(122,175,166,0.08), transparent 60%),
+              radial-gradient(900px 600px at 70% 55%, rgba(122,175,166,0.06), transparent 62%),
+              #05090D;
+}
+/* Make sure all main content sits above the canvas */
+nav, main, section, footer, .hero, .container{
+  position: relative;
+  z-index: 1;
+}
+/* Cleaner, more "trading-tech" UI edges */
+.card, .pain-card, .value-card, .step-card, .doc-type, .trust-card, .faq-item, .form-card{
+  border-radius: 18px !important;
+  backdrop-filter: blur(10px);
+}
+/* Slightly tighter typography for a more corporate-tech feel (no copy changes) */
+h1, h2{
+  letter-spacing: -0.02em;
+}
+.hero{
+  padding-top: 120px;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:-40px;
+  background: radial-gradient(800px 500px at 50% 30%, rgba(242,246,245,0.08), transparent 60%);
+  z-index:-1;
+  pointer-events:none;
+}
+/* Navbar to match the sleek ref */
+.navbar{
+  background: rgba(5,9,13,0.55) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(14px);
+}
+.nav-links a{
+  opacity: 0.9;
+}
+.btn-primary, .nav-cta, .form-submit{
+  border-radius: 999px !important;
+}
+.btn-primary{
+  background: rgba(242,246,245,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: var(--ink) !important;
+}
+.btn-primary:hover{
+  background: rgba(242,246,245,0.14) !important;
+  transform: translateY(-1px);
+}
+/* Subtle separators */
+.section{
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+
+/* ========== RAEN-STYLE INTRO OVERLAY ========== */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  overflow: hidden;
+}
+.intro-text {
+  font-family: 'Google Sans', 'Product Sans', 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-align: center;
+  line-height: 1.2;
+  position: relative;
+  z-index: 2;
+}
+.intro-text .intro-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(6px);
+}
+.intro-text .intro-word.intro-accent {
+  color: var(--accent);
+  font-style: italic;
+}
+.intro-animate .intro-word:nth-child(1) {
+  animation: wordIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+}
+.intro-animate .intro-word:nth-child(2) {
+  animation: wordIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.5s forwards;
+}
+.intro-animate .intro-word:nth-child(3) {
+  animation: wordIn 0.6s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
+}
+@keyframes wordIn {
+  from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.intro-exit {
+  animation: introFadeOut 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes introFadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; }
+}
+body.intro-active { overflow: hidden; }
+
+/* ========== MAIN WRAPPER ========== */
+.main-wrapper { opacity: 0; visibility: hidden; }
+.main-wrapper.revealed { visibility: visible; animation: mainReveal 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+@keyframes mainReveal { from{opacity:0} to{opacity:1} }
+
+/* ========== HERO STAGGERED ENTRANCE ========== */
+.hero-content .hero-badge,
+.hero-content h1,
+.hero-content .hero-sub,
+.hero-content .hero-actions,
+.hero-content .hero-proof {
+  opacity: 0; transform: translateY(30px);
+}
+.main-wrapper.revealed .hero-content .hero-badge   { animation: heroIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s forwards; }
+.main-wrapper.revealed .hero-content h1             { animation: heroIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.25s forwards; }
+.main-wrapper.revealed .hero-content .hero-sub      { animation: heroIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.4s forwards; }
+.main-wrapper.revealed .hero-content .hero-actions   { animation: heroIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.55s forwards; }
+.main-wrapper.revealed .hero-content .hero-proof     { animation: heroIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.7s forwards; }
+@keyframes heroIn { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+
+</style>
+</head>
+<body class="intro-active">
+
+<!-- RAEN-STYLE INTRO OVERLAY -->
+<div id="intro-overlay">
+  <div class="intro-text">
+    <span class="intro-word">Documents</span>&nbsp;
+    <span class="intro-word">made</span>&nbsp;
+    <span class="intro-word intro-accent">easy</span>
+  </div>
+</div>
+
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="main-wrapper">
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="#" class="logo">
+      <span class="logo-mark">IQ</span>
+      Morph IQ
+    </a>
+    <div class="nav-right">
+<a href="#get-started" class="nav-cta">Request a Consultation</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">Based in Harlow, Essex — serving local businesses</div>
+      <h1>Still searching through <em>filing cabinets?</em></h1>
+      <p class="hero-sub">We turn your letting agency's paper documents into a searchable, organised digital archive — with every key detail verified and ready to find in seconds.</p>
+      <div class="hero-actions">
+        <a href="#get-started" class="btn-primary">
+          Request a Consultation
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#how" class="btn-ghost">See how it works ↓</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-item">
+          <span class="proof-num">8</span>
+          <span class="proof-label">Key fields verified per doc</span>
+        </div>
+        <div class="proof-item">
+          <span class="proof-num">100%</span>
+          <span class="proof-label">Human-checked accuracy</span>
+        </div>
+        <div class="proof-item">
+          <span class="proof-num">5 day</span>
+          <span class="proof-label">Typical turnaround</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem section">
+  <div class="container">
+    <div class="problem-header reveal">
+      <div class="section-label">The problem</div>
+      <h2>The hidden operational risk of unmanaged documents</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <span class="pain-icon">🗄️</span>
+        <h3>Inefficient document retrieval</h3>
+        <p>Time spent manually locating contracts, records, or compliance documents accumulates across customer requests, internal reviews, audits, and reporting cycles — reducing operational efficiency and increasing administrative overhead.</p>
+      </div>
+      <div class="pain-card reveal">
+        <span class="pain-icon">⚠️</span>
+        <h3>Regulatory exposure within paper-based systems</h3>
+        <p>When certificates, policies, and renewal dates are stored in unstructured physical archives, critical deadlines can be overlooked. Missed expiries or incomplete documentation can lead to operational disruption, financial penalties, or regulatory scrutiny.</p>
+      </div>
+      <div class="pain-card reveal">
+        <span class="pain-icon">📦</span>
+        <h3>Escalating document backlog</h3>
+        <p>Ongoing accumulation of forms, invoices, reports, and correspondence compounds over time. Without a structured digitisation strategy, document backlogs expand, making retrieval increasingly complex and resource-intensive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section" id="solution">
+  <div class="container">
+    <div class="solution-header reveal">
+      <div class="section-label" style="color: var(--accent);">The solution</div>
+      <h2>Not just scanned — <span class="serif" style="font-style:italic;">understood</span></h2>
+      <p>We don't just scan documents. We extract, verify, and organise the key details — so you can find what you need in seconds, not hours.</p>
+    </div>
+    <div class="value-cards">
+      <div class="value-card reveal">
+        <div class="value-icon">🔍</div>
+        <h3>Searchable PDFs</h3>
+        <p>Every document is OCR-processed and fully searchable. Find any tenant, property, or date instantly — no more manual hunting.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">✓</div>
+        <h3>Verified key fields</h3>
+        <p>Rent amounts, expiry dates, tenant names — all extracted and checked by a real person. Not left to software guesswork.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">📊</div>
+        <h3>Filterable spreadsheet</h3>
+        <p>One Excel file listing every document with key details. Sort by property, filter by date, ready for audits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- OUTCOMES -->
+<section class="section" id="outcomes">
+  <div class="container">
+    <div class="solution-header reveal">
+      <div class="section-label" style="color: var(--accent);">Outcomes</div>
+      <h2>What you get after digitisation</h2>
+      <p>We don’t just convert paper into PDFs. We deliver a structured archive that improves retrieval, reduces risk, and supports day‑to‑day operations.</p>
+    </div>
+    <div class="value-cards">
+      <div class="value-card reveal">
+        <div class="value-icon">⏱</div>
+        <h3>Faster retrieval</h3>
+        <p>Find the right record in seconds with searchable files and consistent naming — not manual searching.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">🛡️</div>
+        <h3>Reduced risk</h3>
+        <p>Key dates, renewals, and evidence are captured and tracked, helping you stay compliant and prepared.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">⚙️</div>
+        <h3>Operational efficiency</h3>
+        <p>Less admin time, fewer delays, and smoother internal handovers — especially when teams share files.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">📑</div>
+        <h3>Audit‑ready</h3>
+        <p>A structured folder system plus an index spreadsheet so you can filter, report, and respond quickly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works section" id="how">
+  <div class="container">
+    <div class="how-header reveal">
+      <h2>Three simple steps</h2>
+      <p>We handle everything. You just hand over the paper.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3>We collect your documents</h3>
+        <p>Box up what you need digitised. We pick up from your office in the Harlow area — or you can drop off.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h3>We scan, process & verify</h3>
+        <p>Every document becomes a searchable PDF. Key fields are extracted and human-checked for accuracy.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h3>You get your archive</h3>
+        <p>Organised digital folders plus a filterable spreadsheet — delivered digitally. Originals returned safely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENT TYPES -->
+<section class="section">
+  <div class="container">
+    <div class="doc-types-header reveal">
+      <h2>Built for regulated, document-heavy businesses</h2>
+      <p>Every industry has critical documents that must be stored, verified and retrieved quickly. We create structured digital archives tailored to your sector — with key fields extracted and human-checked. Click to see the fields we extract and verify.</p>
+    </div>
+    <div class="doc-grid reveal">
+
+      <div class="doc-card" data-doc>
+        <div class="doc-card-header">
+          <div class="doc-tag-icon"><span class="doc-tag-icon-inner">📄</span></div>
+          <span class="doc-card-title">Contracts & Agreements</span>
+          <div class="doc-card-toggle">+</div>
+        </div>
+        <div class="doc-card-body">
+          <div class="doc-card-inner">
+            <div class="doc-card-label">Verified fields</div>
+            <div class="field-pills">
+              <span class="field-pill">Property Address</span>
+              <span class="field-pill">Tenant Name(s)</span>
+              <span class="field-pill">Landlord Name</span>
+              <span class="field-pill">Start Date</span>
+              <span class="field-pill">End Date</span>
+              <span class="field-pill">Monthly Rent</span>
+              <span class="field-pill">Deposit Amount</span>
+              <span class="field-pill">Agreement Date</span>
+            </div>
+            <div class="doc-card-note"><strong>Why it matters:</strong> Missing or incorrect dates can invalidate Section 21 notices and cause disputes at checkout.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-card" data-doc>
+        <div class="doc-card-header">
+          <div class="doc-tag-icon"><span class="doc-tag-icon-inner">🔥</span></div>
+          <span class="doc-card-title">Compliance Certificates & Licences</span>
+          <div class="doc-card-toggle">+</div>
+        </div>
+        <div class="doc-card-body">
+          <div class="doc-card-inner">
+            <div class="doc-card-label">Verified fields</div>
+            <div class="field-pills">
+              <span class="field-pill">Property Address</span>
+              <span class="field-pill">Landlord / Agent Name</span>
+              <span class="field-pill">Engineer Name</span>
+              <span class="field-pill">Gas Safe Reg. Number</span>
+              <span class="field-pill">Inspection Date</span>
+              <span class="field-pill">Expiry Date</span>
+              <span class="field-pill">Appliances Tested</span>
+              <span class="field-pill">Overall Result</span>
+              <span class="field-pill">Defects / Actions</span>
+            </div>
+            <div class="doc-card-note"><strong>Why it matters:</strong> Annual renewal is a legal requirement. A missed expiry means fines up to £6,000 per breach and invalidated eviction rights.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-card" data-doc>
+        <div class="doc-card-header">
+          <div class="doc-tag-icon"><span class="doc-tag-icon-inner">⚡</span></div>
+          <span class="doc-card-title">Inspection & Audit Reports</span>
+          <div class="doc-card-toggle">+</div>
+        </div>
+        <div class="doc-card-body">
+          <div class="doc-card-inner">
+            <div class="doc-card-label">Verified fields</div>
+            <div class="field-pills">
+              <span class="field-pill">Property Address</span>
+              <span class="field-pill">Client / Landlord</span>
+              <span class="field-pill">Electrician Name</span>
+              <span class="field-pill">Certifying Body</span>
+              <span class="field-pill">Registration No.</span>
+              <span class="field-pill">Inspection Date</span>
+              <span class="field-pill">Next Due Date</span>
+              <span class="field-pill">Result (Sat/Unsat)</span>
+              <span class="field-pill">Observation Codes</span>
+            </div>
+            <div class="doc-card-note"><strong>Why it matters:</strong> Unsatisfactory results trigger a 28-day remedial deadline with mandatory council reporting.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-card" data-doc>
+        <div class="doc-card-header">
+          <div class="doc-tag-icon"><span class="doc-tag-icon-inner">🏠</span></div>
+          <span class="doc-card-title">Regulatory & Performance Certifications</span>
+          <div class="doc-card-toggle">+</div>
+        </div>
+        <div class="doc-card-body">
+          <div class="doc-card-inner">
+            <div class="doc-card-label">Verified fields</div>
+            <div class="field-pills">
+              <span class="field-pill">Property Address</span>
+              <span class="field-pill">EPC Rating (A–G)</span>
+              <span class="field-pill">Energy Score</span>
+              <span class="field-pill">Assessor Name</span>
+              <span class="field-pill">Accreditation No.</span>
+              <span class="field-pill">Assessment Date</span>
+              <span class="field-pill">Valid Until</span>
+            </div>
+            <div class="doc-card-note"><strong>Why it matters:</strong> Properties below Band E cannot be legally let. Missing EPCs invalidate Section 21 notices.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-card" data-doc>
+        <div class="doc-card-header">
+          <div class="doc-tag-icon"><span class="doc-tag-icon-inner">🔒</span></div>
+          <span class="doc-card-title">Financial & Protection Records</span>
+          <div class="doc-card-toggle">+</div>
+        </div>
+        <div class="doc-card-body">
+          <div class="doc-card-inner">
+            <div class="doc-card-label">Verified fields</div>
+            <div class="field-pills">
+              <span class="field-pill">Property Address</span>
+              <span class="field-pill">Tenant Name(s)</span>
+              <span class="field-pill">Deposit Amount</span>
+              <span class="field-pill">Scheme Name</span>
+              <span class="field-pill">Certificate / Ref No.</span>
+              <span class="field-pill">Date Protected</span>
+              <span class="field-pill">Prescribed Info Served</span>
+            </div>
+            <div class="doc-card-note"><strong>Why it matters:</strong> Deposits must be protected within 30 days. Failure means you cannot serve a Section 21 notice and may face a penalty of up to 3x the deposit.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-card" data-doc>
+        <div class="doc-card-header">
+          <div class="doc-tag-icon"><span class="doc-tag-icon-inner">🛂</span></div>
+          <span class="doc-card-title">Identity & Verification Documents</span>
+          <div class="doc-card-toggle">+</div>
+        </div>
+        <div class="doc-card-body">
+          <div class="doc-card-inner">
+            <div class="doc-card-label">Verified fields</div>
+            <div class="field-pills">
+              <span class="field-pill">Property Address</span>
+              <span class="field-pill">Tenant Name</span>
+              <span class="field-pill">Document Type(s)</span>
+              <span class="field-pill">Reference Numbers</span>
+              <span class="field-pill">Date of Check</span>
+              <span class="field-pill">Follow-up Required</span>
+              <span class="field-pill">Follow-up Due Date</span>
+              <span class="field-pill">Checked By</span>
+            </div>
+            <div class="doc-card-note"><strong>Why it matters:</strong> Mandatory before every tenancy. Failure to verify carries civil penalties of up to £3,000 per tenant.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc-card" data-doc>
+        <div class="doc-card-header">
+          <div class="doc-tag-icon"><span class="doc-tag-icon-inner">📋</span></div>
+          <span class="doc-card-title">Operational Records & Checklists</span>
+          <div class="doc-card-toggle">+</div>
+        </div>
+        <div class="doc-card-body">
+          <div class="doc-card-inner">
+            <div class="doc-card-label">Verified fields</div>
+            <div class="field-pills">
+              <span class="field-pill">Property Address</span>
+              <span class="field-pill">Date</span>
+              <span class="field-pill">Clerk / Agent Name</span>
+              <span class="field-pill">Number of Rooms</span>
+              <span class="field-pill">Condition Summary</span>
+            </div>
+            <div class="doc-card-note"><strong>Why it matters:</strong> Essential evidence for deposit dispute resolution. Without a clear inventory, deductions are almost impossible to enforce.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="trust section">
+  <div class="container">
+    <div class="trust-header reveal">
+      <h2>Trusted to handle your documents</h2>
+      <p>Registered, insured, and compliant — so you can hand over your paperwork with confidence.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item reveal">
+        <div class="trust-icon">🛡️</div>
+        <h3>ICO Registered</h3>
+        <p>Registered with the Information Commissioner's Office as a data processor. Registration number available on request.</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">📋</div>
+        <h3>Professional Indemnity Insured</h3>
+        <p>Covered for errors and omissions — including incorrect data extraction and loss of documents in our care.</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">🤝</div>
+        <h3>Public Liability Insured</h3>
+        <p>Full public liability cover for when we visit your premises to collect and return your documents.</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">📝</div>
+        <h3>Data Processing Agreement</h3>
+        <p>A GDPR-compliant DPA is signed before we touch a single document. Your data, your rules, fully documented.</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">📍</div>
+        <h3>Local & Secure</h3>
+        <p>Based in Harlow. Documents processed on-site — never uploaded to cloud services or sent to third parties.</p>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">↩️</div>
+        <h3>Signed Chain of Custody</h3>
+        <p>Every collection and return is documented with a signed receipt. You always know exactly where your documents are.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / FORM -->
+<section class="cta-section section" id="get-started">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text reveal">
+        <div class="section-label">Get started</div>
+        <h2>Request a consultation and sample output</h2>
+        <p>Not sure if it's worth it? We’ll review your document types, confirm scope, and share a clear plan for digitising and structuring your archive. No obligation.</p>
+        <ul class="cta-bullets">
+          <li>Sample output available</li>
+          <li>Searchable files with key data captured</li>
+          <li>Structured index spreadsheet</li>
+          <li>Clear turnaround agreed upfront</li>
+        </ul>
+      </div>
+      <div class="form-card reveal">
+        <h3>Request a consultation</h3>
+        <p class="form-sub">Fill in your details and we'll be in touch to arrange collection.</p>
+        <form id="lead-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="company">Agency / Company</label>
+              <input type="text" id="company" name="company" placeholder="Smith Lettings">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.co.uk" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="07700 900000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="volume">Approx. documents to digitise</label>
+            <select id="volume" name="volume">
+              <option value="" disabled selected>Select a range...</option>
+              <option value="under-100">Under 100</option>
+              <option value="100-500">100 – 500</option>
+              <option value="500-1000">500 – 1,000</option>
+              <option value="1000+">1,000+</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit">Request a Consultation →</button>
+          <p class="form-note">We’ll respond within 24 hours to confirm requirements and next steps.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="faq-header reveal">
+      <h2>Questions & answers</h2>
+      <p>Everything you need to know before getting started.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q">How much does it cost?</button>
+        <div class="faq-a"><div class="faq-a-inner">Our pricing is based on document type, volume, and the level of data extraction required. After your initial consultation or trial, we provide a clear, itemised quote outlining scope, turnaround time, and deliverables. There are no hidden fees — you know exactly what you are paying for before any full engagement begins.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">How long does it take?</button>
+        <div class="faq-a"><div class="faq-a-inner">Standard projects are typically completed within five working days. For larger archives or complex document sets, we agree a structured delivery timeline in advance. This ensures transparency, predictable milestones, and minimal disruption to your day-to-day operations.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">What format do I get the files in?</button>
+        <div class="faq-a"><div class="faq-a-inner">You receive fully searchable PDF files organised in a structured digital folder system tailored to your organisation. In addition, we provide a master spreadsheet containing extracted and verified key data fields, enabling filtering, sorting, audit preparation, and internal reporting.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Is my data safe?</button>
+        <div class="faq-a"><div class="faq-a-inner">Yes. All documents are handled under strict data protection procedures. Files are processed locally and are not shared with third parties without agreement. We operate under GDPR-compliant processes and are prepared to sign a formal Data Processing Agreement prior to engagement. Chain-of-custody documentation is maintained throughout collection, processing, and return.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">Do I need to sort the documents first?</button>
+        <div class="faq-a"><div class="faq-a-inner">No prior organisation is required. Documents can be provided in their current state. Our process includes sorting, categorisation, scanning, indexing, and verification. We are structured to handle disorganised archives efficiently and return them in a clear, logical digital structure.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">What if some documents are poor quality?</button>
+        <div class="faq-a"><div class="faq-a-inner">If a document is illegible, incomplete, or damaged, it is flagged and documented in your delivery report. Our human verification stage ensures that key data is accurately captured and that any inconsistencies are clearly identified. This provides transparency and reduces risk compared to fully automated scanning solutions.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta section">
+  <div class="container reveal">
+    <h2>Ready to clear the backlog?</h2>
+    <p>Book a consultation. Review a sample output. Decide with confidence.</p>
+    <div class="final-cta-actions">
+      <a href="#get-started" class="btn-primary">
+        Request a Consultation
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>© 2026 Morph IQ. Harlow, Essex.</span>
+      <div class="footer-links">
+        <a href="#get-started">Get Started</a>
+        <a href="#faq">FAQ</a>
+        <a href="/cdn-cgi/l/email-protection#89e0e7efe6c9e4e6fbf9e1e0f8a7eae6a7fce2"><span class="__cf_email__" data-cfemail="234a4d454c634e4c51534b4a520d404c0d5648">[email&#160;protected]</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- end .main-wrapper -->
+
+<script>
+
+/* ========== RAEN-STYLE INTRO SEQUENCE ========== */
+(() => {
+  const overlay = document.getElementById('intro-overlay');
+  const mainWrapper = document.querySelector('.main-wrapper');
+  const navEl = document.getElementById('nav');
+
+  // Trigger word-by-word animation
+  requestAnimationFrame(() => {
+    overlay.classList.add('intro-animate');
+  });
+
+  // After words animate in, hold briefly then fade out
+  setTimeout(() => {
+    overlay.classList.add('intro-exit');
+  }, 2400);
+
+  // After exit, reveal main content
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    document.body.classList.remove('intro-active');
+    mainWrapper.classList.add('revealed');
+    // Slide nav in
+    setTimeout(() => {
+      navEl.classList.add('nav-entered');
+    }, 200);
+  }, 3000);
+})();
+
+// Sticky nav
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Fallback: if reveals haven't triggered after 2s, force them visible
+setTimeout(() => {
+  reveals.forEach(el => {
+    if (!el.classList.contains('visible')) {
+      el.classList.add('visible');
+    }
+  });
+}, 2000);
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// Document type card accordion
+document.querySelectorAll('[data-doc] .doc-card-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const card = header.parentElement;
+    const wasOpen = card.classList.contains('open');
+    // Close all other cards
+    document.querySelectorAll('.doc-card.open').forEach(el => el.classList.remove('open'));
+    // Toggle this one
+    if (!wasOpen) card.classList.add('open');
+  });
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Form submission feedback
+document.getElementById('lead-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = this.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  
+  // Simulate form submission (replace with actual Formspree when ready)
+  setTimeout(() => {
+    btn.textContent = '✓ Request Sent!';
+    btn.style.background = '#111111';
+    setTimeout(() => {
+      btn.textContent = 'Request a Consultation →';
+      btn.style.background = '';
+      btn.disabled = false;
+      this.reset();
+    }, 3000);
+  }, 1200);
+});
+</script>
+
+
+<script>
+/* --- RAEN-STYLE BACKGROUND: Slow organic mountain dot-wave ---
+   Centered hill shape, gentle movement, no hard edges
+*/
+(() => {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d', { alpha: true });
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  let w = 0, h = 0, dpr = 1;
+
+  const state = {
+    t: 0,
+    mx: 0, my: 0,
+    mxSm: 0, mySm: 0,
+    cols: 200, rows: 90,
+  };
+
+  function resize() {
+    w = window.innerWidth; h = window.innerHeight;
+    dpr = clamp(window.devicePixelRatio || 1, 1, 2);
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Adaptive density
+    const area = w * h;
+    const target = clamp(Math.floor(area / 130), 10000, 20000);
+    const aspect = w / h;
+    state.cols = clamp(Math.floor(Math.sqrt(target * aspect)), 150, 260);
+    state.rows = clamp(Math.floor(target / state.cols), 60, 120);
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('mousemove', (e) => {
+    state.mx = (e.clientX / w) * 2 - 1;
+    state.my = (e.clientY / h) * 2 - 1;
+  }, { passive: true });
+  resize();
+
+  function draw() {
+    // Very slow time progression for calm feel
+    state.t += 0.003;
+    state.mxSm = lerp(state.mxSm, state.mx, 0.03);
+    state.mySm = lerp(state.mySm, state.my, 0.03);
+
+    ctx.clearRect(0, 0, w, h);
+
+    const cols = state.cols;
+    const rows = state.rows;
+
+    // The field spans full width but is vertically centered
+    const centerY = h * 0.52;
+    const spreadX = w * 1.1;  // slightly wider than screen
+    const spreadY = h * 0.55;
+    const originX = w * 0.5;
+
+    // Gentle mouse parallax
+    const tiltX = state.mxSm * 0.15;
+    const tiltY = state.mySm * 0.10;
+
+    for (let j = 0; j < rows; j++) {
+      const v = j / (rows - 1);       // 0..1 vertical
+      const vy = v - 0.5;             // -0.5..0.5
+
+      for (let i = 0; i < cols; i++) {
+        const u = i / (cols - 1);     // 0..1 horizontal
+        const ux = u - 0.5;           // -0.5..0.5
+
+        // Base grid position - wide horizontal, centered vertical
+        const baseX = originX + ux * spreadX;
+        const baseY = centerY + vy * spreadY;
+
+        // Distance from center (normalised 0..1)
+        const dx = ux * 2;            // -1..1
+        const dy = vy * 2;            // -1..1
+        const dist = Math.sqrt(dx * dx * 0.6 + dy * dy * 1.4);
+
+        // Organic mountain envelope: gaussian-like, wider than tall
+        // This creates the smooth hill shape
+        const envelope = Math.exp(-dist * dist * 2.2);
+
+        // Skip points with negligible visibility
+        if (envelope < 0.01) continue;
+
+        // Slow rolling waves
+        const wave1 = Math.sin((u * 1.8 + state.t * 0.6) * Math.PI * 2);
+        const wave2 = Math.cos((v * 1.2 - state.t * 0.4) * Math.PI * 2);
+        const wave3 = Math.sin(((u * 0.8 + v * 0.6) + state.t * 0.3) * Math.PI * 2);
+
+        // Height displacement (creates the undulating surface)
+        const height = (wave1 * 0.5 + wave2 * 0.35 + wave3 * 0.15) * 35 * envelope;
+
+        // Apply displacement + subtle parallax
+        const px = baseX + tiltX * height * 0.5;
+        const py = baseY - height + tiltY * height * 0.3;
+
+        // Alpha based on envelope (bright center, fade to edges)
+        const alpha = clamp(envelope * 0.32, 0.0, 0.28);
+
+        // Tick height varies with wave height
+        const tickH = (1.5 + Math.max(0, height) * 0.08) * (0.7 + envelope * 0.6);
+
+        // Draw vertical tick mark
+        ctx.strokeStyle = 'rgba(200,215,212,' + alpha + ')';
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(px, py - tickH);
+        ctx.lineTo(px, py + tickH);
+        ctx.stroke();
+
+        // Sparse accent dots for shimmer
+        if ((i + j * 7) % 19 === 0 && envelope > 0.15) {
+          ctx.fillStyle = 'rgba(122,175,166,' + (alpha * 0.7) + ')';
+          ctx.beginPath();
+          ctx.arc(px, py, 0.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    // Soft central glow behind the mountain
+    const glow = ctx.createRadialGradient(w*0.5, h*0.46, 0, w*0.5, h*0.46, Math.min(w,h)*0.45);
+    glow.addColorStop(0, 'rgba(122,175,166,0.06)');
+    glow.addColorStop(0.5, 'rgba(122,175,166,0.02)');
+    glow.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, w, h);
+
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>
